@@ -3,8 +3,6 @@ project(SoLoud)
 
 enable_language(C CXX)
 
-set(CMAKE_CXX_STANDARD 26)
-
 ### IMPORTANT!!!
 
 ## SoLoud + MinGW fix:
