@@ -134,7 +134,12 @@ typedef void *HMODULE;
 
 static HMODULE oal_openDll() {
 #if defined(__APPLE__)
-	return dlopen("libopenal.1.dylib", RTLD_LAZY);
+#ifdef DEBUG
+	    return dlopen("libopenal.1.dylib", RTLD_LAZY);
+#else
+        return dlopen("../Frameworks/libopenal.1.dylib", RTLD_LAZY);
+#endif
+
 #else
     return dlopen("libopenal.so.1", RTLD_LAZY);
 #endif

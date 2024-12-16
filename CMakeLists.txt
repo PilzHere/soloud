@@ -65,27 +65,16 @@ add_library(SoLoud STATIC
         ${SOLOUD_SOURCES}
 )
 
-if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    # Include directories for SoLoud (we use system openal)
-    target_include_directories(SoLoud PUBLIC
-            include
-    )
 
-    # Link SoLoud with the external OpenAL Soft dynamic library
-    target_link_libraries(SoLoud PUBLIC
-            "-framework OpenAL"
-    )
-else ()
-    # Include directories for SoLoud and OpenAL
-    target_include_directories(SoLoud PUBLIC
-            include
-            ${OPENAL_INCLUDE_DIR}  # Include OpenAL headers from include dir
-    )
+# Include directories for SoLoud and OpenAL
+target_include_directories(SoLoud PUBLIC
+        include
+        ${OPENAL_INCLUDE_DIR}  # Include OpenAL headers from include dir
+)
 
-    # Link SoLoud with the external OpenAL Soft dynamic library
-    target_link_libraries(SoLoud PUBLIC
-            ${OPENAL_LIBRARY}
-    )
-endif ()
+# Link SoLoud with the external OpenAL Soft dynamic library
+target_link_libraries(SoLoud PUBLIC
+        ${OPENAL_LIBRARY}
+)
 
 message(STATUS "Building ${PROJECT_NAME} complete")
